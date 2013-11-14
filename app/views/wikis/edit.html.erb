@@ -1,4 +1,11 @@
-<h1>Edit Wiki</h1>
+<head>
+</head>
+<body>
+<h1><center>Edit and Preview Your Wiki Entry Real-Time</center></h1>
+<div class="container">
+  <div class="sixteen columns">
+  </div>
+  <div class="eight columns">
 <%= form_for @wiki, html: { class: 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :title, class: 'control-label' %>
@@ -7,9 +14,10 @@
     </div>
   </div>
 <div class="control-group">
+   <h3> Edit Your Wiki Entry </h3>
     <%= f.label :body, class: 'control-label' %>
     <div class="controls">
-      <%= f.text_field :body, rows: 8 %>
+      <%= f.text_area :body, size: "60x20"%>
     </div>
   </div>
 <div class="control-group">
@@ -17,4 +25,13 @@
     <%= f.submit "Save", class: 'btn' %>
   </div>
 </div>
+</div>
+
+<div class="eight columns">
+<h3> Preview Wiki Entry</h3>
+<div id="editor" style="width: 300px; height: 250px; border: 1px solid #ccc; text-size: 12pt">
+</div>
+</div>
+</div>
 <% end %>
+</body>

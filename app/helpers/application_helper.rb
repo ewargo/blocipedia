@@ -4,4 +4,9 @@ def markdown(content)
   @markdown.render(content)
 end
 
+def include_javascript (file)
+    s = " <script type=\"text/javascript\">" + render(:file => file) + "</script>"
+    content_for(:head, raw(s))
+end
+
 end
