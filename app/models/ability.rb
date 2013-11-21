@@ -2,6 +2,25 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    user ||= User.new # guest user
+
+    # if a member, they can manage their own posts 
+    # (or create new ones)
+    if user.role? :member
+      can :manage, Wiki, :user_id => user.id
+    end
+
+    # Moderators can delete any post
+    if user.role? :moderator
+      can :read, Wiki
+      can :manage, Wiki :collaborators => { :user_id => user.id }
+    end
+
+    # Admins can do anything
+    if user.role? :admin
+      can :manage, :all
+    end
+    
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
@@ -30,3 +49,4 @@ class Ability
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
   end
 end
+

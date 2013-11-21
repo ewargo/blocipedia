@@ -33,5 +33,15 @@
 </div>
 </div>
 </div>
+
+<h3>Current Wiki Collaborators </h3>
+<ul>
+  <% @collaborators.each do |c| %>
+    <li><%= c.user.name %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Add or Delete Collaborators', new_wiki_collaborator_path(@wiki) %>
+
 <% end %>
 </body>

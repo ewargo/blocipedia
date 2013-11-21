@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <h3>Add Collaborators to Your Wiki </h3>
+    <%= javascript_include_tag :defaults %>
+    <%= csrf_meta_tag %>
+  </head>
+  <ul>
+    <% @users.each do |u| %>
+      <%= form_for [@wiki, @collaborator] do |f| %>
+        <li>
+          <%= u.name %>
+          <%= f.hidden_field :user_id, :value => u.id %>
+          <%= f.submit "Add as collaborator" %>
+          <% end %>
+        </li>
+          <%= button_to 'Delete', wiki_collaborator_path(@wiki, u), :method => 'delete', :confirm => 'Are you sure?' %>
+          <% end %>
+  </ul>
+</html>

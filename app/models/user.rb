@@ -5,6 +5,14 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :username
-  # attr_accessible :title, :body
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :username, 
+  :ispremium, :payments
+
+  has_many :wikis, through: :collaborators
+  has_many :collaborators
+  has_many :payments
+
+  def ispremium
+  end
+  
 end

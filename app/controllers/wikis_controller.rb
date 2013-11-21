@@ -24,6 +24,7 @@
   
   def edit
     @wiki = Wiki.find(params[:id])
+    @collaborators = @wiki.collaborators
   end
 
   def update
