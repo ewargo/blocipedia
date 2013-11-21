@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   :ispremium, :payments
 
   has_many :wikis, through: :collaborators
-  has_many :collaborators
+  has_many :collaborators, dependent: :destroy
   has_many :payments
 
   def ispremium
