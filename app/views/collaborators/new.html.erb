@@ -9,12 +9,16 @@
     <% @users.each do |u| %>
       <%= form_for [@wiki, @collaborator] do |f| %>
         <li>
-          <%= u.name %>
+          <%= u.name %> <%= u.email %>
           <%= f.hidden_field :user_id, :value => u.id %>
           <%= f.submit "Add as collaborator" %>
-          <% end %>
         </li>
-          <%= button_to 'Delete', wiki_collaborator_path(@wiki, u), :method => 'delete', :confirm => 'Are you sure?' %>
-          <% end %>
+      <% end %>
+     
+      <% if @wiki.collaborators.pluck("user_id").include? u.id %>
+        <% c = Collaborator.where(:user => u, :wiki => @wiki.last %>
+        <%= button_to 'Delete', '/', :method => 'delete', :confirm => 'Are you sure?' %>
+      <% end %>
+    <% end %>
   </ul>
 </html>
